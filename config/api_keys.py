@@ -1,16 +1,31 @@
-# API Keys and sensitive credentials
-# This file should be added to .gitignore
+"""
+API Keys Configuration - Now reads from environment variables
+"""
+import os
+from dotenv import load_dotenv
 
-# FYERS API Credentials
-FYERS_CLIENT_ID = "3YFVCYCC9I-100"
-FYERS_SECRET_KEY = "DJUSUPALOG"
-FYERS_REDIRECT_URI = "https://127.0.0.1/"
+load_dotenv()
 
-# NewsAPI Key (if using)
-NEWS_API_KEY = "cefc18e88f4f4f0ea740b96a7d240729"
+# Read from environment variables
+FYERS_CLIENT_ID = os.getenv('FYERS_CLIENT_ID')
+FYERS_SECRET_KEY = os.getenv('FYERS_SECRET_KEY') 
+FYERS_REDIRECT_URI = os.getenv('FYERS_REDIRECT_URI')
+NEWS_API_KEY = os.getenv('NEWS_API_KEY')
 
-# Twitter API Keys (if using)
-TWITTER_API_KEY = "BTn0RW3vWh0Qh3K2cpi2ZcuY5"
-TWITTER_API_SECRET = "EjHnqZUvHadmUVwHfSXIlNq8sUYz9z0H921rGxS7290xwhs01V"
-TWITTER_ACCESS_TOKEN = "your_twitter_access_token"
-TWITTER_ACCESS_SECRET = "your_twitter_access_secret"
+def validate_credentials():
+    """Validate that required credentials are present"""
+    missing = []
+    
+    if not FYERS_CLIENT_ID or 'your_actual' in FYERS_CLIENT_ID:
+        missing.append('FYERS_CLIENT_ID')
+    
+    if not FYERS_SECRET_KEY or 'your_actual' in FYERS_SECRET_KEY:
+        missing.append('FYERS_SECRET_KEY')
+    
+    if missing:
+        print(f"❌ Missing credentials: {', '.join(missing)}")
+        print("   Please update your .env file")
+        return False
+    
+    print("✅ API credentials loaded from .env")
+    return True
