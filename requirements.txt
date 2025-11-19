@@ -1,0 +1,14 @@
+fyers-api
+yfinance
+pandas
+numpy
+xgboost
+scikit-learn
+stable-baselines3
+gymnasium
+transformers
+torch
+schedule
+python-dotenv
+plotly
+requests

@@ -1,0 +1,136 @@
+2025-11-19 20:57:41,182 - ProjectAegis - INFO - Autonomous Trading System initialized for 5 stocks
+2025-11-19 21:21:45,745 - ProjectAegis - INFO - Autonomous Trading System initialized for 5 stocks
+2025-11-19 21:22:45,869 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:22:45,883 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:22:45,896 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:22:45,914 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:22:45,935 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:22:45,949 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:22:45,950 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:22:45,950 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:23:46,028 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:23:46,038 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:23:46,052 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:23:46,064 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:23:46,077 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:23:46,087 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:23:46,088 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:23:46,088 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:24:46,135 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:24:46,147 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:24:46,157 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:24:46,168 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:24:46,188 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:24:46,196 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:24:46,197 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:24:46,197 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:25:46,245 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:25:46,255 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:25:46,266 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:25:46,274 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:25:46,284 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:25:46,291 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:25:46,292 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:25:46,292 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:26:46,391 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:26:46,405 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:26:46,419 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:26:46,430 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:26:46,441 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:26:46,453 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:26:46,454 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:26:46,455 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:27:46,484 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:27:46,500 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:27:46,514 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.40
+2025-11-19 21:27:46,529 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:27:46,540 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:27:46,549 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:27:46,550 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:27:46,550 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:28:46,581 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:28:46,601 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.70
+2025-11-19 21:28:46,615 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:28:46,627 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:28:46,639 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:28:46,650 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.40
+2025-11-19 21:28:46,650 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:28:46,651 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:29:42,762 - ProjectAegis - INFO - Autonomous Trading System initialized for 5 stocks
+2025-11-19 21:29:42,762 - ProjectAegis - INFO - Starting Autonomous Trading System for 5 stocks
+2025-11-19 21:29:42,823 - ProjectAegis - INFO - Portfolio Health: Value=INR 100,000.00, PnL=INR 0.00 (0.0%), Positions=0, Drawdown=0.00%
+2025-11-19 21:30:42,865 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:30:42,874 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.70
+2025-11-19 21:30:42,889 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:30:42,905 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:30:42,919 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:30:42,931 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.40
+2025-11-19 21:30:42,931 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:30:42,931 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:31:42,968 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:31:42,979 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:31:42,988 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:31:43,000 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:31:43,021 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:31:43,034 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:31:43,034 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:31:43,034 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:32:43,065 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:32:43,077 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:32:43,090 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:32:43,108 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:32:43,118 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:32:43,129 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.50
+2025-11-19 21:32:43,129 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:32:43,130 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:33:43,182 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:33:43,191 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:33:43,204 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:33:43,216 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:33:43,224 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:33:43,234 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60
+2025-11-19 21:33:43,234 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:33:43,235 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:44:54,871 - ProjectAegis - INFO - Autonomous Trading System initialized for 5 stocks
+2025-11-19 21:44:54,871 - ProjectAegis - INFO - TEST MODE: Lowered consensus threshold to 0.5
+2025-11-19 21:44:54,871 - ProjectAegis - INFO - TEST MODE: This will generate more trading signals for demonstration
+2025-11-19 21:44:54,871 - ProjectAegis - INFO - Starting Autonomous Trading System for 5 stocks
+2025-11-19 21:44:54,931 - ProjectAegis - INFO - Portfolio Health: Value=INR 100,000.00, PnL=INR 0.00 (0.0%), Positions=0, Drawdown=0.00%
+2025-11-19 21:45:54,966 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:45:54,976 - ProjectAegis - INFO - STRONG BUY: NSE:RELIANCE-EQ - Confidence: 0.70
+2025-11-19 21:45:54,984 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.43, Reasons: ML low confidence, Technical bearish
+2025-11-19 21:45:54,995 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.61, Reasons: RL not buying, Negative sentiment
+2025-11-19 21:45:55,011 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.57, Reasons: ML low confidence, RL not buying, Technical bearish
+2025-11-19 21:45:55,025 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.60, Reasons: RL not buying, Technical bearish
+2025-11-19 21:45:55,026 - ProjectAegis - INFO - Found 1 buy opportunities out of 5 stocks
+2025-11-19 21:45:55,041 - ExecutionEngine - INFO - Order executed: BUY 5 of NSE:RELIANCE-EQ at 1384
+2025-11-19 21:45:55,041 - ProjectAegis - INFO - SUCCESS: Opened position in NSE:RELIANCE-EQ with INR 8,197.84
+2025-11-19 21:45:55,042 - ProjectAegis - INFO - Successfully executed 1 trades this cycle
+2025-11-19 21:46:55,074 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:46:55,085 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.67, Reasons: RL not buying, Technical bearish
+2025-11-19 21:46:55,095 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.57, Reasons: ML low confidence, RL not buying, Negative sentiment
+2025-11-19 21:46:55,106 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.47, Reasons: ML low confidence, RL not buying, Negative sentiment, Technical bearish
+2025-11-19 21:46:55,119 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.61, Reasons: Technical bearish
+2025-11-19 21:46:55,132 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.50, Reasons: ML low confidence, RL not buying, Negative sentiment, Technical bearish
+2025-11-19 21:46:55,132 - ProjectAegis - INFO - Found 0 buy opportunities out of 5 stocks
+2025-11-19 21:46:55,133 - ProjectAegis - INFO - No consensus buy signals found
+2025-11-19 21:47:55,170 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:47:55,180 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.46, Reasons: ML low confidence, RL not buying, Negative sentiment, Technical bearish
+2025-11-19 21:47:55,189 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.70, Reasons: RL not buying, Negative sentiment
+2025-11-19 21:47:55,204 - ProjectAegis - INFO - STRONG BUY: NSE:INFY-EQ - Confidence: 0.67
+2025-11-19 21:47:55,214 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.71, Reasons: RL not buying, Negative sentiment
+2025-11-19 21:47:55,230 - ProjectAegis - INFO - Evaluated NSE:ICICIBANK-EQ: Consensus=False, Confidence=0.43, Reasons: ML low confidence, RL not buying, Negative sentiment, Technical bearish
+2025-11-19 21:47:55,232 - ProjectAegis - INFO - Found 1 buy opportunities out of 5 stocks
+2025-11-19 21:47:55,251 - ExecutionEngine - INFO - Order executed: BUY 6 of NSE:INFY-EQ at 1165
+2025-11-19 21:47:55,252 - ProjectAegis - INFO - SUCCESS: Opened position in NSE:INFY-EQ with INR 7,590.76
+2025-11-19 21:47:55,252 - ProjectAegis - INFO - Successfully executed 1 trades this cycle
+2025-11-19 21:48:55,294 - ProjectAegis - INFO - === Starting Multi-Stock Trading Cycle ===
+2025-11-19 21:48:55,304 - ProjectAegis - INFO - Evaluated NSE:RELIANCE-EQ: Consensus=False, Confidence=0.63, Reasons: Negative sentiment
+2025-11-19 21:48:55,314 - ProjectAegis - INFO - Evaluated NSE:TCS-EQ: Consensus=False, Confidence=0.44, Reasons: ML low confidence, RL not buying, Technical bearish
+2025-11-19 21:48:55,325 - ProjectAegis - INFO - Evaluated NSE:INFY-EQ: Consensus=False, Confidence=0.53, Reasons: ML low confidence, RL not buying, Negative sentiment, Technical bearish
+2025-11-19 21:48:55,336 - ProjectAegis - INFO - Evaluated NSE:HDFCBANK-EQ: Consensus=False, Confidence=0.61, Reasons: Technical bearish
+2025-11-19 21:48:55,348 - ProjectAegis - INFO - STRONG BUY: NSE:ICICIBANK-EQ - Confidence: 0.86
+2025-11-19 21:48:55,348 - ProjectAegis - INFO - Found 1 buy opportunities out of 5 stocks
+2025-11-19 21:48:55,366 - ExecutionEngine - INFO - Order executed: BUY 10 of NSE:ICICIBANK-EQ at 1131
+2025-11-19 21:48:55,367 - ProjectAegis - INFO - SUCCESS: Opened position in NSE:ICICIBANK-EQ with INR 11,932.90
+2025-11-19 21:48:55,368 - ProjectAegis - INFO - Successfully executed 1 trades this cycle
