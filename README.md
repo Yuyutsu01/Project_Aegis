@@ -40,10 +40,11 @@ if xgb_signal == ppo_action == sentiment_signal:
 else:
     stay flat
 
+```
 
 Portfolio updates and performance metrics are computed **after trade execution**, never during model inference.
 
----
+
 
 ## Execution Pipeline
 
@@ -68,7 +69,7 @@ Executes trades only on full agreement and records equity, drawdown, and signals
 ### Visualization
 Streamlit dashboard displays the equity curve, drawdowns, positions, and signals.
 
----
+
 
 ## Repository Structure
 
@@ -87,6 +88,8 @@ project_aegis/
 ├── streamlit_app.py
 └── README.md
 
+```
+
 ## Performance Metrics
 
 Evaluation focuses on **risk-adjusted performance**, not just raw returns:
@@ -101,7 +104,7 @@ Evaluation focuses on **risk-adjusted performance**, not just raw returns:
 **Example:**  
 Lower returns with a Sharpe ratio of **1.5** are preferred over higher returns with a Sharpe of **0.3**.
 
----
+
 
 ## Key Design Choices
 
@@ -113,7 +116,7 @@ Lower returns with a Sharpe ratio of **1.5** are preferred over higher returns w
 
 These constraints keep results **interpretable and reproducible**.
 
----
+
 
 ## Intended Use
 
@@ -124,7 +127,7 @@ These constraints keep results **interpretable and reproducible**.
 
 **Not intended for live trading without further validation.**
 
----
+
 
 ## Future Extensions
 
@@ -134,7 +137,6 @@ These constraints keep results **interpretable and reproducible**.
 - Walk-forward validation  
 - Live market data integration  
 
----
 
 ## License
 
