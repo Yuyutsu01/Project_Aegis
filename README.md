@@ -120,10 +120,10 @@ These constraints keep results **interpretable and reproducible**.
 
 ## Intended Use
 
-- Academic research  
-- Hybrid ML/RL experimentation  
-- Risk-aware strategy design  
-- Portfolio or system design demonstration  
+- Academic research.  
+- Hybrid ML/RL experimentation.  
+- Risk-aware strategy design. 
+- Portfolio or system design demonstration.  
 
 **Not intended for live trading without further validation.**
 
