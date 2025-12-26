@@ -140,4 +140,8 @@ These constraints keep results **interpretable and reproducible**.
 
 ## License
 
-For research and educational use only.
+For research and educational use only
+
+
+
+Contributions are welcome. Please open a pull request for any suggestions or improvements.
