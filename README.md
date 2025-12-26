@@ -49,7 +49,7 @@ Portfolio updates and performance metrics are computed **after trade execution**
 ## Execution Pipeline
 
 ### Data Ingestion
-Historical OHLC data is downloaded and stored as parquet files.
+Historical OHLC (Open, High, Low, Close) data is downloaded and stored as parquet files.
 
 ### Feature Engineering
 Generates technical indicators such as returns, RSI, MACD, volatility, and trend filters.
@@ -85,7 +85,7 @@ project_aegis/
 │   ├── ppo/               # Trained PPO agents
 │   └── backtests/         # Backtest results
 ├── run_* scripts          # Pipeline execution
-├── streamlit_app.py
+├
 └── README.md
 
 ```
