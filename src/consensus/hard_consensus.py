@@ -92,7 +92,7 @@ class HardConsensus:
     ) -> int:
         """
         3-model hard consensus with sentiment veto.
-        Sentiment can ONLY block trades.
+        Sentiment can ONLY block trades. (added safety)
         """
         if (
             xgb_signal == ppo_signal ==
