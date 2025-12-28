@@ -24,4 +24,48 @@ class SentimentEngine:
         self.df["date"] = pd.to_datetime(self.df["date"])
         self.df.sort_values(["symbol", "date"], inplace=True)
 
-        
+    def get_signal(
+        self,
+        date: pd.Timestamp,
+        symbol: str
+    ) -> int:
+        """
+        Returns sentiment signal for a given date and symbol.
+        Output ∈ {-1, 0, +1}
+        """
+
+        row = self.df[
+            (self.df["symbol"] == symbol) &
+            (self.df["date"] == date)
+        ]
+
+        if row.empty:
+            return 1  # No sentiment → neutral veto
+
+        score = float(row["sentiment_score"].iloc[0])
+
+        if score > self.POS_THRESHOLD:
+            return 1
+        elif score < self.NEG_THRESHOLD:
+            return -1
+        else:
+            return 0
+
+    def batch_signals(self) -> pd.DataFrame:
+        """
+        Returns a dataframe with an added 'sentiment_signal' column.
+        Useful for backtesting / diagnostics.
+        """
+
+        df = self.df.copy()
+
+        def map_score(s):
+            if s > self.POS_THRESHOLD:
+                return 1
+            elif s < self.NEG_THRESHOLD:
+                return -1
+            else:
+                return 0
+
+        df["sentiment_signal"] = df["sentiment_score"].apply(map_score)
+        return df
