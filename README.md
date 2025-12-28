@@ -85,7 +85,7 @@ project_aegis/
 │   ├── ppo/               # Trained PPO agents
 │   └── backtests/         # Backtest results
 ├── run_* scripts          # Pipeline execution
-└── sentiment
+└── sentiments
 └── README.md
 
 ```
