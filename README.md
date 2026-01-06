@@ -6,8 +6,8 @@
 Project AEGIS is a research-oriented algorithmic trading system that combines:
 
 - Supervised learning (XGBoost)
-- Reinforcement learning (PPO)
-- Market sentiment signals
+- Reinforcement learning (PPO) (proximal policy optimization)
+- Market sentiment signals  (not done yet)
 
 Trades are executed **only when all models agree on direction**.  
 If there is disagreement, the system stays flat.
@@ -97,12 +97,12 @@ project_aegis/
 
 Evaluation focuses on **risk-adjusted performance**, not just raw returns:
 
-1. Cumulative Return  
-2. Sharpe Ratio  
-3. Sortino Ratio  
-4. Calmar Ratio  
-5. Maximum Drawdown  
-6. Exposure Ratio  
+1. Cumulative Return.  
+2. Sharpe Ratio.  
+3. Sortino Ratio.  
+4. Calmar Ratio.  
+5. Maximum Drawdown.  
+6. Exposure Ratio.  
 
 **Example:**  
 Lower returns with a Sharpe ratio of **1.5** are preferred over higher returns with a Sharpe of **0.3**.
