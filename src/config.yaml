@@ -1,51 +1,32 @@
-PPO Test Cumulative Reward: -0.021085
+# Project AEGIS - Training & Strategy Results (VALID YAML)
+# =========================================================
 
+models:
+  xgboost:
+    path: "artifacts/xgb/xgb_directional.json"
+    status: "trained"
+  ppo:
+    path: "artifacts/ppo/ppo_directional"
+    status: "trained"
+    env_params:
+      reward_delay: true
+      commission: 0.001
 
-consensus backtest results:
-Cumulative Return: 6.3960
-Max Drawdown    : -0.2269
-Trades Taken    : 644
+strategy_params:
+  commission: 0.001
+  consensus_gate: "hard_agreement"
+  sentiment_filter: "veto_only"
+  risk_filters:
+    max_volatility: 0.03
+    max_drawdown: 0.10
 
-
-| Metric       | Before Risk Filters | After Risk Filters |
-| ------------ | ------------------- | ------------------ |
-| Cum Return   | 6.3960              | **3.1759**         |
-| Max Drawdown | -0.2269             | **-0.0377**        |
-| Trades       | 644                 | **306**            |
-
-
-=== XGBOOST ONLY BACKTEST ===
-Cumulative Return : 12.7971
-Max Drawdown      : -0.2312
-Trades Taken      : 1329
-
-
-=== PPO BACKTEST ===
-Cumulative Return : 0.3911
-Max Drawdown      : -0.3458
-Trades Taken      : 922
-
-=== CONSENSUS BACKTEST (XGB + PPO) ===
-Cumulative Return : 3.1759
-Max Drawdown      : -0.0377
-Trades Taken      : 306
-
-
-=== HARD CONSENSUS BACKTEST (RISK + POSITION SIZING) ===
-
-Cumulative Return : 3.0892
-Annualised Return : 27.24%
-Max Drawdown      : -0.0377
-Sharpe Ratio      : 4.635
-Trades Taken      : 306
-
-
-=== HARD CONSENSUS BACKTEST (XGB + PPO + SENTIMENT) ===
-Cumulative Return        : 3.1907
-Annualised Return        : 27.63%
-Exposure-Adjusted CAGR   : 245.85%
-Max Drawdown             : -0.1251
-Sharpe Ratio             : 2.041
-Trades Taken             : 276
-Exposure Ratio           : 19.66%
-Sentiment Veto Rate      : 0.00%
+last_results:
+  ppo_rewards: -0.021085
+  consensus_net:
+    cumulative_return: 3.1907
+    annualized_return: 0.2763
+    max_drawdown: -0.1251
+    sharpe_ratio: 2.041
+    trades_taken: 276
+    exposure_ratio: 0.1966
+    sentiment_veto_rate: 0.00

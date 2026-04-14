@@ -40,6 +40,7 @@ class TradingEnv(gym.Env):
 
         self.current_step = 0
         self.position = 0
+        self.commission = 0.001  # 0.1% per side (fixed)
 
         self.reset()
 
@@ -75,13 +76,28 @@ class TradingEnv(gym.Env):
 
     def step(self, action):
         prev_position = self.position
-        self.position = {0: -1, 1: 0, 2: 1}[int(action)]
+        new_position = {0: -1, 1: 0, 2: 1}[int(action)]
+        self.position = new_position
 
-        ret = self.data.loc[self.current_step, "ret_1d"]
-        reward = self.position * ret
+        # --------------------------------------------------
+        # TRADING COST (Commission + Slippage)
+        # Applied only when position changes
+        # --------------------------------------------------
+        costs = 0
+        if new_position != prev_position:
+            costs = self.commission
+
+        # --------------------------------------------------
+        # REWARD DELAY (NO LOOK-AHEAD)
+        # Observation at t -> Action at t -> earns return at t+1
+        # --------------------------------------------------
+        # Note: current_step is where observation was taken.
+        # we need the return of the NEXT candle.
+        next_ret = self.data.loc[self.current_step + 1, "ret_1d"]
+        reward = (self.position * next_ret) - costs
 
         self.current_step += 1
-        done = self.current_step >= len(self.data) - 1
+        done = self.current_step >= len(self.data) - 2 # buffer for t+1 return
 
         obs = self._get_obs() if not done else np.zeros(self.n_features, dtype=np.float32)
 
