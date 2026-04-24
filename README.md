@@ -1,61 +1,66 @@
-# 🛡️ Project AEGIS
-**Precision-Engineered Agreement-Based Hybrid ML Trading System**
+# 🛡️ Project AEGIS V2
+**RL-Optimized Meta-Policy Trading System**
 
 [![Status](https://img.shields.io/badge/Status-Performance_Hardened-success?style=flat-square)](#-performance-hardening)
 [![License](https://img.shields.io/badge/License-Research_Only-blue?style=flat-square)](#license)
-[![Sharpe](https://img.shields.io/badge/Sharpe_Ratio-2.95-gold?style=flat-square)](#-live-performance-metrics)
+[![Sharpe](https://img.shields.io/badge/OOS_Sharpe_Ratio-1.08-gold?style=flat-square)](#-performance-metrics)
 
-Project **AEGIS** (Agreement-based Execution & Integrated Sentiment) is a high-conviction algorithmic trading framework designed to eliminate over-trading by enforcing strict consensus between multiple machine learning models.
+Project **AEGIS** (Advanced Execution & Gradient-boosted Intelligent Strategy) is a hybrid quantitative trading system that leverages **Meta-Policy Reinforcement Learning**. Unlike traditional ensembles, AEGIS uses a high-performance XGBoost model as a primary signal generator ("The Eyes") and a PPO Reinforcement Learning agent as the decision maker ("The Brain").
 
 ---
 
-## 💎 The Core Thesis: "Total Agreement"
-Unlike systems that use weighted averages or "soft" ensembles, AEGIS operates on a **Hard Consensus Gate**. A trade is only executed if all underlying logic modules agree on the market direction.
+## 💎 The Architecture: Meta-Policy Optimization
+AEGIS V2 moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Architecture**. 
 
-| Signal Source | Strategy Role | Logic Type |
+| Component | Strategy Role | Logic Type |
 | :--- | :--- | :--- |
-| **XGBoost** | Directional Bias | Supervised Classifer |
-| **PPO Agent** | Action Policy | Reinforcement Learning |
-| **Sentiment Engine** | Market Pulse | Veto/Confirmation |
+| **XGBoost** | "The Eyes" | Predicts continuous market probabilities $P(\text{Up})$. |
+| **PPO Agent** | "The Brain" | Optimizes trading actions based on XGB signals + market state. |
 
-> [!IMPORTANT]
-> **Consensus Logic:** If `XGB` == `PPO` == `Sentiment`, the gate opens. Otherwise, the system remains **Flat (Neutral)**. This approach prioritizes alpha quality over trade frequency.
+### How it Works:
+1. **Feature Extraction:** Market technical indicators (RSI, MACD, Z-Scores) are calculated.
+2. **Signal Generation:** A regularized XGBoost model predicts the directional probability of the next candle.
+3. **RL Decision:** The PPO agent observes the XGBoost probability, the raw technicals, and its **current position**. It then decides whether to go Long, Short, or Flat, inherently optimizing for transaction costs and risk-adjusted returns.
 
 ---
 
-## 📊 Performance Metrics (Current Audit)
-*Metrics extracted from the latest hardened backtest in `src/config.yaml`.*
+## 📊 Performance Metrics (V2 Audit)
+*Metrics verified via strict Out-of-Sample (OOS) chronological testing.*
 
 | Metric | Value |
 | :--- | :--- |
-| **Cumulative Return** | **602.43%** |
-| **Annualized Return** | **34.02%** |
-| **Sharpe Ratio** | **2.954** |
-| **Max Drawdown** | **-16.15%** |
-| **Exposure Ratio** | **17.65%** |
+| **OOS Cumulative Return** | **+23.37%** |
+| **OOS Sharpe Ratio** | **1.08** |
+| **Max Drawdown** | **-19.38%** |
+| **Exposure Ratio** | **93.20%** |
 | **Transaction Cost** | **0.1% (Fixed)** |
 
 ---
 
-## 🛠️ Performance Hardening
-The system has recently undergone a major **Logic Integrity Audit** to ensure professional-grade reliability:
-
-1. **Zero Look-Ahead Bias**: Fixed reward calculation logic. Observations at time $t$ result in actions that earn returns at time $t+1$ (next candle).
-2. **Realistic Friction**: Integrated commission and slippage modeling (set at 0.1% per trade) directly into the Environment reward signals.
-3. **Transaction Ledger**: A new transparency layer that logs every signal-consensus event for forensic audit.
+## 🛠️ System Hardening
+Following a rigorous quantitative audit, AEGIS V2 has been hardened against:
+1. **Overfitting:** Implemented L1/L2 regularization and tree depth constraints in XGBoost.
+2. **Logic Fragility:** Replaced the "Sentiment Veto" with a continuous Meta-Policy, removing the hidden long-bias found in V1.
+3. **Execution Realism:** Integrated 0.1% commission directly into the RL reward function, forcing the agent to learn "sticky" positions that minimize churn.
 
 ---
 
-## 🖥️ Dashboard (Cyber-Quant UI)
-Visualize live backtests and model agreement using our custom Streamlit interface:
+## 🚀 Execution Flow
 
-*   **Alpha Curve**: Visualize equity growth vs. market benchmarks.
-*   **Audit Tab**: Forensic ledger showing every trade, model signal, and PnL impact.
-*   **Drawdown Profile**: Real-time risk monitoring.
+To train and verify the system from scratch:
 
 ```bash
-# Launch the dashboard
-streamlit run streamlit.py
+# 1. Feature Engineering
+python run_feature_engineer.py
+
+# 2. Train XGBoost (The Signal Generator)
+python run_xgb_training.py
+
+# 3. Train PPO (The Meta-Policy)
+python run_ppo_training.py
+
+# 4. Run Backtest & Verify
+python run_meta_backtest.py
 ```
 
 ---
@@ -65,30 +70,17 @@ streamlit run streamlit.py
 ```text
 project_aegis/
 ├── src/
-│   ├── envs/         # Hardened Trading Environment (PPO)
-│   ├── features/     # Feature Engineering & Indicator Logic
-│   └── consensus/    # The Hard-Consensus Gate Logic
+│   ├── envs/         # Trading Environment (Meta-Policy State)
+│   ├── models/       # XGBoost & PPO Agent Implementations
+│   └── feature_engineer.py # Multi-Index safe technical indicators
 ├── artifacts/        # Serialized Model Files (XGB/PPO)
-├── data/             # Market Datasets
-└── streamlit.py      # Main Visualization Engine
+├── data/             # Processed Parquet Datasets
+├── run_xgb_training.py
+├── run_ppo_training.py
+└── run_meta_backtest.py
 ```
-
----
-
-## 🚀 Getting Started
-
-1. **Configure**: Update `src/config.yaml` with your parameters.
-2. **Train**: Run training scripts for XGBoost and PPO.
-3. **Audit**: Run the consensus backtest to generate artifacts.
-4. **Visualize**: Launch the Streamlit dashboard to audit results.
 
 ---
 
 ## ⚖️ License
 For research and educational use only. This system is designed for backtesting experimentation. **Not intended for live trading without further validation.**
-
-<<<<<<< HEAD
-=======
----
-
->>>>>>> 60dd11352a428a3584fab14a14ed13066da64bc7
