@@ -87,3 +87,8 @@ project_aegis/
 ## ⚖️ License
 For research and educational use only. This system is designed for backtesting experimentation. **Not intended for live trading without further validation.**
 
+<<<<<<< HEAD
+=======
+---
+
+>>>>>>> 60dd11352a428a3584fab14a14ed13066da64bc7
