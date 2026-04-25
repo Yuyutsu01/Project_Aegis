@@ -1,4 +1,4 @@
-# 🛡️ Project AEGIS V2
+# 🛡️ Project AEGIS 
 **RL-Optimized Meta-Policy Trading System**
 
 [![Status](https://img.shields.io/badge/Status-Performance_Hardened-success?style=flat-square)](#-performance-hardening)
@@ -10,7 +10,7 @@ Project **AEGIS** (Advanced Execution & Gradient-boosted Intelligent Strategy) i
 ---
 
 ## 💎 The Architecture: Meta-Policy Optimization
-AEGIS V2 moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Architecture**. 
+AEGIS moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Architecture**. 
 
 | Component | Strategy Role | Logic Type |
 | :--- | :--- | :--- |
@@ -24,7 +24,7 @@ AEGIS V2 moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Arc
 
 ---
 
-## 📊 Performance Metrics (V2 Audit)
+## 📊 Performance Metrics
 *Metrics verified via strict Out-of-Sample (OOS) chronological testing.*
 
 | Metric | Value |
@@ -38,7 +38,7 @@ AEGIS V2 moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Arc
 ---
 
 ## 🛠️ System Hardening
-Following a rigorous quantitative audit, AEGIS V2 has been hardened against:
+Following a rigorous quantitative audit, AEGIS has been hardened against:
 1. **Overfitting:** Implemented L1/L2 regularization and tree depth constraints in XGBoost.
 2. **Logic Fragility:** Replaced the "Sentiment Veto" with a continuous Meta-Policy, removing the hidden long-bias found in V1.
 3. **Execution Realism:** Integrated 0.1% commission directly into the RL reward function, forcing the agent to learn "sticky" positions that minimize churn.
