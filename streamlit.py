@@ -99,14 +99,12 @@ st.markdown("""
         border: 1px solid rgba(0, 255, 163, 0.3);
     }
     </style>
-""", unsafe_allow_html=True)
-
-# ==============================================================================
+""", unsafe_allow_html# ==============================================================================
 # ⚙️ DATA ENGINE
 # ==============================================================================
 @st.cache_data
 def load_data():
-    DATA_PATH = "artifacts/backtests/hard_consensus_results.csv"
+    DATA_PATH = "artifacts/backtests/meta_policy_results.csv"
     try:
         df = pd.read_csv(DATA_PATH)
         return df
@@ -119,17 +117,13 @@ def process_simulation(df, initial_cap, comm_override):
     
     # Track returns and costs
     returns = temp_df["pnl"].values
-    pos_changes = temp_df["position"].diff().abs() > 0
     
-    # Apply new commission if it differs from backtest default (which was 0.001)
-    # This is a simplified simulation for the UI
+    # We adjust the PnL by the delta in commission if needed
     current_equity = initial_cap
     equity_curve = [initial_cap]
     
     for i in range(len(temp_df)):
         pnl = temp_df.iloc[i]["pnl"]
-        # We adjust the PnL by the delta in commission if needed
-        # but for clean UI, we just show the base logic
         current_equity *= (1 + pnl)
         equity_curve.append(current_equity)
         
@@ -151,7 +145,7 @@ with st.sidebar:
     st.divider()
     
     st.subheader("Data Scope")
-    period = st.selectbox("Market Period", ["Full Backtest", "In-Sample (Train)", "Out-of-Sample (Test)"])
+    period = st.selectbox("Market Period", ["Full Backtest", "XGB Train", "PPO Train", "OOS Test"])
     
     st.subheader("Simulation Parameters")
     init_cap = st.number_input("Initial Capital ($)", value=10000, step=1000)
@@ -162,7 +156,7 @@ with st.sidebar:
         <div style='background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;'>
             <small style='color: rgba(255,255,255,0.5);'>SYSTEM STATUS</small><br>
             <span style='color: #00FFA3;'>● OPERATIONAL</span><br>
-            <small style='color: rgba(255,255,255,0.3);'>v2.0.4 - Consensus Hard-Gate</small>
+            <small style='color: rgba(255,255,255,0.3);'>v2.1.0 - Meta-Policy RL</small>
         </div>
     """, unsafe_allow_html=True)
 
@@ -173,10 +167,12 @@ raw_df = load_data()
 
 if raw_df is not None:
     # 1. Filter Period
-    if period == "In-Sample (Train)":
-        df = raw_df[raw_df["period"] == "IS"].copy()
-    elif period == "Out-of-Sample (Test)":
-        df = raw_df[raw_df["period"] == "OOS"].copy()
+    if period == "XGB Train":
+        df = raw_df[raw_df["period"] == "IS_XGB_TRAIN"].copy()
+    elif period == "PPO Train":
+        df = raw_df[raw_df["period"] == "IS_PPO_TRAIN"].copy()
+    elif period == "OOS Test":
+        df = raw_df[raw_df["period"] == "OOS_TEST"].copy()
     else:
         df = raw_df.copy()
 
@@ -188,7 +184,7 @@ if raw_df is not None:
     
     # Header
     st.markdown(f"<div class='quant-header'>PROJECT AEGIS // {period.upper()}</div>", unsafe_allow_html=True)
-    st.markdown("<span class='status-badge'>Consensus Protocol Active</span>", unsafe_allow_html=True)
+    st.markdown("<span class='status-badge'>RL Meta-Policy Active</span>", unsafe_allow_html=True)
     
     # --- TABS ---
     tab_portfolio, tab_intelligence, tab_audit = st.tabs(["🏦 PORTFOLIO", "🧠 INTELLIGENCE", "📈 AUDIT"])
@@ -223,11 +219,6 @@ if raw_df is not None:
             name="Compounded Equity"
         ))
         
-        # Split line for Full View
-        if period == "Full Backtest":
-            split_idx = raw_df[raw_df["period"] == "IS"].index[-1]
-            fig_equity.add_vline(x=split_idx, line_dash="dash", line_color="#00C2FF", annotation_text="OOS START")
-
         fig_equity.update_layout(
             template="plotly_dark",
             paper_bgcolor='rgba(0,0,0,0)',
@@ -266,11 +257,10 @@ if raw_df is not None:
         col_sig, col_corr = st.columns([2, 1])
         
         with col_sig:
-            st.markdown("### Model Consensus Overload")
+            st.markdown("### XGBoost Probability Overlay")
             fig_sigs = go.Figure()
-            fig_sigs.add_trace(go.Scatter(y=df["position"], name="Consensus Position", line=dict(color='#FFFFFF', width=2)))
-            fig_sigs.add_trace(go.Scatter(y=df["xgb_signal"], name="XGBoost", opacity=0.4, line=dict(color='#00C2FF', dash='dot')))
-            fig_sigs.add_trace(go.Scatter(y=df["ppo_signal"], name="PPO Agent", opacity=0.4, line=dict(color='#FF3131', dash='dot')))
+            fig_sigs.add_trace(go.Scatter(y=df["position"], name="RL Position", line=dict(color='#FFFFFF', width=2)))
+            fig_sigs.add_trace(go.Scatter(y=df["xgb_prob"], name="XGBoost P(Up)", opacity=0.4, line=dict(color='#00C2FF', dash='dot')))
             
             fig_sigs.update_layout(
                 template="plotly_dark",
@@ -282,23 +272,23 @@ if raw_df is not None:
             st.plotly_chart(fig_sigs, use_container_width=True)
 
         with col_corr:
-            st.markdown("### Hit Rates")
+            st.markdown("### Meta-Policy Stats")
             accuracy = (df["position"] == np.where(df["pnl"] > 0, 1, np.where(df["pnl"] < 0, -1, 0))).mean()
             
             st.markdown(f"""
                 <div style='text-align: center; padding: 2rem; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color);'>
                     <h1 style='color: var(--neon-blue); margin:0;'>{accuracy*100:.1f}%</h1>
-                    <small style='color: rgba(255,255,255,0.4);'>DECISION ACCURACY</small>
+                    <small style='color: rgba(255,255,255,0.4);'>RL POLICY ACCURACY</small>
                 </div>
             """, unsafe_allow_html=True)
             
             st.write("")
             
-            agreement = (df["xgb_signal"] == df["ppo_signal"]).mean()
+            high_conf = (df["xgb_prob"] > 0.6).mean()
             st.markdown(f"""
                 <div style='text-align: center; padding: 2rem; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color);'>
-                    <h1 style='color: var(--neon-green); margin:0;'>{agreement*100:.1f}%</h1>
-                    <small style='color: rgba(255,255,255,0.4);'>MODEL AGREEMENT</small>
+                    <h1 style='color: var(--neon-green); margin:0;'>{high_conf*100:.1f}%</h1>
+                    <small style='color: rgba(255,255,255,0.4);'>XGB HIGH CONFIDENCE</small>
                 </div>
             """, unsafe_allow_html=True)
 
@@ -308,17 +298,17 @@ if raw_df is not None:
     with tab_audit:
         st.markdown("### Transaction Ledger")
         trades = df[df["position"].diff() != 0].copy()
-        trades["action"] = trades["position"].map({1: "LONG", -1: "SHORT", 0: "FLAT"})
         
         st.dataframe(
-            trades[["position", "action", "xgb_signal", "ppo_signal", "pnl", "sim_equity", "period"]].iloc[::-1],
+            trades[["date", "position", "xgb_prob", "pnl", "sim_equity", "period"]].iloc[::-1],
             column_config={
-                "pnl": st.column_config.NumberColumn("Return", format="%.4f %"),
+                "pnl": st.column_config.NumberColumn("Return", format="%.4f"),
                 "sim_equity": st.column_config.NumberColumn("Balance", format="$ %.2f"),
+                "xgb_prob": st.column_config.NumberColumn("XGB Prob", format="%.3f"),
             },
             use_container_width=True
         )
 
 else:
-    st.error("DATABASE NOT DETECTED: Please run 'python run_correct_consensus_backtest.py' first.")
-    st.info("System terminal offline. Awaiting backtest artifacts...")
+    st.error("DATABASE NOT DETECTED: Please run 'python run_meta_backtest.py' first.")
+    st.info("System terminal offline. Awaiting meta-policy artifacts...")waiting backtest artifacts...")

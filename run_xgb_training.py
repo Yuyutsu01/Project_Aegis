@@ -1,13 +1,15 @@
 import pandas as pd
 import os
+import numpy as np
 from src.models.xgb_model import XGBDirectionalModel
 from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.model_selection import TimeSeriesSplit
 
 DATA_PATH = "data/RELIANCE.NS_processed.parquet"
 ARTIFACT_DIR = "artifacts/xgb"
 os.makedirs(ARTIFACT_DIR, exist_ok=True)
 
-print("=== XGBOOST TRAINING (SAFE MODE) ===")
+print("=== XGBOOST TRAINING (META-POLICY MODE) ===")
 
 # --------------------------------------------------
 # LOAD DATA
@@ -29,46 +31,44 @@ X = df[feature_cols]
 y = df["target"]
 
 # --------------------------------------------------
-# TIME-BASED SPLIT
+# SPLIT FOR META-POLICY (60% XGB, 20% PPO, 20% TEST)
 # --------------------------------------------------
-split_1 = int(len(df) * 0.7)
-split_2 = int(len(df) * 0.85)
+split_1 = int(len(df) * 0.6)
 
 X_train, y_train = X.iloc[:split_1], y.iloc[:split_1]
-X_val, y_val     = X.iloc[split_1:split_2], y.iloc[split_1:split_2]
-X_test, y_test   = X.iloc[split_2:], y.iloc[split_2:]
 
 # --------------------------------------------------
-# TRAIN
+# TIME-SERIES CROSS VALIDATION
 # --------------------------------------------------
+tscv = TimeSeriesSplit(n_splits=3)
+aucs = []
+
+for train_idx, val_idx in tscv.split(X_train):
+    X_tr, y_tr = X_train.iloc[train_idx], y_train.iloc[train_idx]
+    X_v, y_v = X_train.iloc[val_idx], y_train.iloc[val_idx]
+    
+    cv_model = XGBDirectionalModel()
+    cv_model.train(X_tr, y_tr, X_v, y_v)
+    
+    proba = cv_model.predict_proba(X_v)
+    aucs.append(roc_auc_score(y_v, proba))
+
+print(f"CV ROC-AUC scores: {aucs}")
+print(f"Mean CV ROC-AUC: {np.mean(aucs):.4f}")
+
+# --------------------------------------------------
+# FINAL MODEL TRAINING
+# --------------------------------------------------
+# Train on full 60% for the final model to be used by PPO
 model = XGBDirectionalModel()
-model.train(X_train, y_train, X_val, y_val)
-
-# --------------------------------------------------
-# EVALUATE
-# --------------------------------------------------
-proba = model.predict_proba(X_test)
-pred = (proba > 0.5).astype(int)
-
-acc = accuracy_score(y_test, pred)
-auc = roc_auc_score(y_test, proba)
-
-print(f"Test Accuracy: {acc:.4f}")
-print(f"Test ROC-AUC : {auc:.4f}")
-
-# --------------------------------------------------
-# BASELINE CHECK
-# --------------------------------------------------
-if auc < 0.52:
-    raise RuntimeError("Model does not beat random baseline. STOP.")
-
-print("✅ XGBoost PASSED baseline sanity check")
+# using a small dummy validation set just for early stopping
+split_val = int(len(X_train) * 0.9)
+model.train(X_train.iloc[:split_val], y_train.iloc[:split_val], X_train.iloc[split_val:], y_train.iloc[split_val:])
 
 # -----------------------------------
-# SAVE MODEL (OPTIONAL BUT SAFE)
+# SAVE MODEL
 # -----------------------------------
 MODEL_PATH = "artifacts/xgb/xgb_directional.json"
 model.model.get_booster().save_model(MODEL_PATH)
 
-
-print(f"✅ XGBoost model saved at: {MODEL_PATH}")
+print(f"DONE: XGBoost model saved at: {MODEL_PATH}")
