@@ -99,7 +99,7 @@ st.markdown("""
         border: 1px solid rgba(0, 255, 163, 0.3);
     }
     </style>
-""", unsafe_allow_html# ==============================================================================
+""", unsafe_allow_html=True)
 # ⚙️ DATA ENGINE
 # ==============================================================================
 @st.cache_data
@@ -311,4 +311,4 @@ if raw_df is not None:
 
 else:
     st.error("DATABASE NOT DETECTED: Please run 'python run_meta_backtest.py' first.")
-    st.info("System terminal offline. Awaiting meta-policy artifacts...")waiting backtest artifacts...")
+    st.info("System terminal offline. Awaiting meta-policy artifacts...")
