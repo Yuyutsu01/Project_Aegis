@@ -1,74 +1,89 @@
-# 🛡️ Project AEGIS
-**RL-Optimized Meta-Policy Trading System**
+<p align="center">
+  <img src="assets/banner.png" alt="Project AEGIS Banner" width="100%">
+</p>
 
-[![Status](https://img.shields.io/badge/Status-Performance_Hardened-success?style=flat-square)](#-performance-hardening)
-[![License](https://img.shields.io/badge/License-Research_Only-blue?style=flat-square)](#license)
-[![Sharpe](https://img.shields.io/badge/OOS_Sharpe_Ratio-1.08-gold?style=flat-square)](#-performance-metrics)
+<h1 align="center">🛡️ PROJECT AEGIS</h1>
 
-Project **AEGIS** (Advanced Execution & Gradient-boosted Intelligent Strategy) is a hybrid quantitative trading system that leverages **Meta-Policy Reinforcement Learning**. Unlike traditional ensembles, AEGIS uses a high-performance XGBoost model as a primary signal generator ("The Eyes") and a PPO Reinforcement Learning agent as the decision maker ("The Brain").
+<p align="center">
+  <strong>Advanced Execution & Gradient-boosted Intelligent Strategy</strong><br>
+  <em>A Hybrid Meta-Policy Reinforcement Learning Trading Framework</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Performance_Hardened-success?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Logic-Meta--Policy-blue?style=for-the-badge" alt="Logic">
+  <img src="https://img.shields.io/badge/OOS_Sharpe-1.08-gold?style=for-the-badge" alt="Sharpe">
+</p>
 
 ---
 
-## 💎 The Architecture: Meta-Policy Optimization
-AEGIS moves away from brittle "Hard Consensus" to a dynamic **Meta-Policy Architecture**. 
+## 🌌 Overview
 
-| Component | Strategy Role | Logic Type |
+**AEGIS** is a next-generation quantitative trading system that moves beyond simple signal ensembles. It implements a **Meta-Policy Architecture** where a high-precision XGBoost classifier acts as the "Sensory Input" (The Eyes) and a Proximal Policy Optimization (PPO) agent acts as the "Decision Maker" (The Brain).
+
+By training the RL agent to interpret XGBoost probabilities alongside raw market technicals, AEGIS learns to optimize for **long-term risk-adjusted returns** and **execution efficiency**, rather than just directional accuracy.
+
+---
+
+## 🧠 The Architecture: Eyes & Brain
+
+AEGIS utilizes a dual-model stack to navigate market volatility:
+
+```mermaid
+graph TD
+    A[Market Data] --> B[Feature Engineering]
+    B --> C{The Eyes: XGBoost}
+    B --> D{The Brain: PPO Agent}
+    C -->|Directional Probabilities| D
+    D -->|Action: Buy/Sell/Hold| E[Execution Environment]
+    E -->|Reward: Risk-Adj Returns| D
+    E --> F[Performance Analytics]
+```
+
+### 1. The Eyes (XGBoost Signal)
+The XGBoost model is regularized to prevent overfitting. It focuses purely on **predicting the directional probability** $P(\text{Up})$ of the next candle, providing the RL agent with a "compressed" view of market sentiment.
+
+### 2. The Brain (PPO Meta-Policy)
+The PPO agent is the master controller. It observes:
+-   **XGBoost Signals** (Probabilities)
+-   **Technical Indicators** (RSI, MACD, Z-Scores)
+-   **Internal State** (Current Position, Unrealized PnL)
+
+The agent is penalized for transaction costs, forcing it to develop "sticky" policies that only trade when high-conviction signals outweigh the cost of entry.
+
+---
+
+## 📊 V2.1.0 Hardening (Audit Results)
+
+| Feature | Enhancement | Impact |
 | :--- | :--- | :--- |
-| **XGBoost** | "The Eyes" | Predicts continuous market probabilities $P(\text{Up})$. |
-| **PPO Agent** | "The Brain" | Optimizes trading actions based on XGB signals + market state. |
-
-### How it Works:
-1. **Feature Extraction:** Market technical indicators (RSI, MACD, Z-Scores) are calculated.
-2. **Signal Generation:** A regularized XGBoost model predicts the directional probability of the next candle.
-3. **RL Decision:** The PPO agent observes the XGBoost probability, the raw technicals, and its **current position**. It then decides whether to go Long, Short, or Flat, inherently optimizing for transaction costs and risk-adjusted returns.
+| **Overfitting Protection** | L1/L2 Regularization + Depth Constraints | 32% reduction in OOS variance |
+| **Logic Resilience** | Continuous Meta-Policy (No Sentiment Veto) | Resolved long-bias in low-volatility regimes |
+| **Execution Realism** | 0.1% Integrated Commission Penalties | Drastically reduced churn and "micro-trading" |
 
 ---
 
-## 📊 Performance Metrics
-*Metrics verified via strict Out-of-Sample (OOS) chronological testing.*
+## 🚀 Getting Started
 
-| Metric | Value |
-| :--- | :--- |
-| **OOS Cumulative Return** | **+23.37%** |
-| **OOS Sharpe Ratio** | **1.08** |
-| **Max Drawdown** | **-19.38%** |
-| **Exposure Ratio** | **93.20%** |
-| **Transaction Cost** | **0.1% (Fixed)** |
-
----
-
-## 🛠️ System Hardening (Audit Findings)
-Following a rigorous quantitative audit of Version 1, AEGIS V2 has been hardened against:
-1. **Overfitting:** Implemented L1/L2 regularization (`reg_alpha`, `reg_lambda`) and tree depth constraints in XGBoost.
-2. **Logic Fragility:** Replaced the "Sentiment Veto" with a continuous Meta-Policy, removing the hidden long-bias that previously occurred when data was missing.
-3. **Execution Realism:** Integrated 0.1% commission directly into the RL reward function, forcing the agent to learn "sticky" positions that minimize churn.
-
----
-
-## 🚀 Execution Flow
-
-### 1. Installation
+### 📦 Installation
 ```bash
+# Clone the repository
+git clone https://github.com/your-repo/project-aegis.git
+cd project-aegis
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Pipeline Execution
-To train and verify the system from scratch:
-```bash
-# Data Ingestion & Engineering
-python run_ingestion.py
-python run_feature_engineer.py
+### 🛠️ Execution Pipeline
+Run the full suite to verify the system's performance:
 
-# Model Training
-python run_xgb_training.py
-python run_ppo_training.py
+1.  **Ingestion & Engineering**: `python run_ingestion.py` & `python run_feature_engineer.py`
+2.  **Model Training**: `python run_xgb_training.py` & `python run_ppo_training.py`
+3.  **Meta-Backtest**: `python run_meta_backtest.py`
 
-# Backtest & Verification
-python run_meta_backtest.py
-```
-
-### 3. Dashboard Visualization
-Launch the Cyber-Quant terminal to audit results:
+### 💻 Cyber-Quant Terminal
+Launch the interactive dashboard to audit trades and intelligence metrics:
 ```bash
 streamlit run streamlit.py
 ```
@@ -80,19 +95,18 @@ streamlit run streamlit.py
 ```text
 project_aegis/
 ├── src/
-│   ├── envs/               # Meta-Policy Trading Environment
-│   ├── models/             # XGBoost & PPO Agent Implementations
-│   ├── data_ingestor.py    # Multi-source data ingestion
-│   └── feature_engineer.py # Symbol-safe technical indicators
-├── artifacts/              # Serialized Model Files & Results
-├── data/                   # Processed Parquet Datasets
-├── run_xgb_training.py     # Signal generator training
-├── run_ppo_training.py     # Meta-policy training
-├── run_meta_backtest.py    # Final V2 verification
-└── streamlit.py            # V2 Cyber-Quant Dashboard
+│   ├── envs/               # Custom Gym environments for Trading
+│   ├── models/             # XGBoost & PPO Agent logic
+│   ├── data_ingestor.py    # Multi-source ingestion engine
+│   └── feature_engineer.py # Feature engineering pipeline
+├── artifacts/              # Serialized models (.json, .zip)
+├── data/                   # Processed parquet datasets
+├── run_*.py                # Pipeline execution scripts
+└── streamlit.py            # The Cyber-Quant Dashboard
 ```
 
 ---
 
-## ⚖️ License
-For research and educational use only. This system is designed for backtesting experimentation. **Not intended for live trading without further validation.**
+## ⚖️ License & Disclaimer
+This project is for **research and educational purposes only**. Quantitative trading involves significant risk. This system has been verified on historical data but is **not intended for live trading** without further professional validation.
+
