@@ -12,3 +12,4 @@ schedule
 python-dotenv
 plotly
 requests
+streamlit

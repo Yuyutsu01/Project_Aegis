@@ -2,9 +2,8 @@ import os
 import pandas as pd
 from src.data_ingestor import DataIngestor
 
-# -----------------------------------
+
 # CONFIG
-# -----------------------------------
 SYMBOLS = ["RELIANCE.NS", "TCS.NS"]
 DATA_DIR = "data"
 START_DATE = "2020-01-01"
@@ -21,9 +20,9 @@ ingestor = DataIngestor(
 data = ingestor.fetch_historical()
 
 for symbol, df in data.items():
-    # -------------------------------
+
     # ENFORCE CANONICAL SCHEMA
-    # -------------------------------
+    
     df = df.rename(columns={
         "Open": "open",
         "High": "high",
