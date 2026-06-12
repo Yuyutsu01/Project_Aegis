@@ -214,20 +214,20 @@ This formulation penalizes excessive transaction churn. It forces the PPO agent 
 
 ---
 
-## 📊 Performance Benchmarks (Placeholder Metrics)
+## 📊 Performance Benchmarks (Out-of-Sample Holdout Metrics)
 
 The system was evaluated on historical data splits. Below are the comparative backtesting metrics:
 
 ### Core Performance Metrics
 | Metric | Buy & Hold | XGBoost Only | PPO Only | AEGIS (Hybrid) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Annualized Return** | 12.4% | 15.1% | 8.2% | **18.7%** |
-| **Annualized Volatility** | 18.2% | 14.5% | 12.1% | **11.8%** |
-| **Sharpe Ratio** | 0.68 | 1.04 | 0.67 | **1.58** |
-| **Sortino Ratio** | 0.82 | 1.28 | 0.79 | **2.01** |
-| **Max Drawdown** | -24.8% | -14.2% | -10.5% | **-7.9%** |
-| **Profit Factor** | 1.15 | 1.32 | 1.09 | **1.48** |
-| **Calmar Ratio** | 0.50 | 1.06 | 0.78 | **2.36** |
+| **Annualized Return** | 11.93% | 2.26% | -4.66% | **19.80%** |
+| **Annualized Volatility** | 19.62% | 19.66% | 17.47% | **18.91%** |
+| **Sharpe Ratio** | 0.70 | 0.17 | -0.19 | **1.08** |
+| **Sortino Ratio** | 1.23 | 0.31 | -0.27 | **1.64** |
+| **Max Drawdown** | -15.14% | -26.51% | -19.43% | **-12.97%** |
+| **Profit Factor** | 1.13 | 1.03 | 0.97 | **1.21** |
+| **Calmar Ratio** | 0.79 | 0.09 | -0.24 | **1.53** |
 
 <details>
 <summary>🔍 Out-of-Sample (OOS) Validation Analysis</summary>
