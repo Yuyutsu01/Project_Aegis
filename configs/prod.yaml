@@ -1,0 +1,15 @@
+# Production trading limit overrides
+environment: "production"
+database_uri: "postgresql://postgres:${PROD_DB_PASSWORD}@aegis-db.cluster-prod.internal:5432/aegis_ledger"
+log_level: "INFO"
+use_mock_broker: false
+
+strategy:
+  symbols:
+    - "RELIANCE.NS"
+    - "TCS.NS"
+
+risk:
+  max_drawdown_limit: 0.10 # Hard stop drawdown ceiling for real-money allocations
+  max_volatility_limit: 0.025
+  leverage_cap: 1.0 # Absolutely no margin exposure allowed in base production runs

@@ -1,0 +1,13 @@
+# Development sandbox configuration overriding base
+environment: "development"
+database_uri: "sqlite:///data/sandbox.db"
+log_level: "DEBUG"
+use_mock_broker: true
+
+strategy:
+  symbols:
+    - "RELIANCE.NS" # Sandbox symbol focus
+
+models:
+  ppo:
+    total_timesteps: 1000 # Fast test training run locally
