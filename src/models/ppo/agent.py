@@ -12,5 +12,6 @@ def build_ppo(env):
         clip_range=0.2,
         ent_coef=0.01,
         verbose=0,
-        seed=42
+        seed=42,
+        device="cpu"  # Force CPU execution (significantly faster for small MLP policies)
     )

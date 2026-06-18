@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 from stable_baselines3.common.vec_env import DummyVecEnv
-from src.envs.trading_env import TradingEnv
-from src.models.ppo_agent import build_ppo
+from trading_environment.env import TradingEnv
+from src.models.ppo.agent import build_ppo
 import xgboost as xgb
 
 DATA_PATH = "data/RELIANCE.NS_processed.parquet"
