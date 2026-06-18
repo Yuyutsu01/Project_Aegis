@@ -4,7 +4,7 @@ import xgboost as xgb
 from stable_baselines3 import PPO
 import os
 
-from src.envs.trading_env import TradingEnv
+from trading_environment.env import TradingEnv
 
 # ==================================================
 # CONFIG
@@ -45,7 +45,7 @@ df["xgb_prob"] = booster.predict(dmat)
 # LOAD PPO META-POLICY
 # ==================================================
 env = TradingEnv(df)
-model = PPO.load(PPO_PATH, env=env)
+model = PPO.load(PPO_PATH, env=env, device="cpu")
 
 # ==================================================
 # MAIN BACKTEST LOOP
