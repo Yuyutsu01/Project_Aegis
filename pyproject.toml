@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "project-aegis"
+version = "1.0.0"
+description = "Meta-Policy Reinforcement Learning Framework for Risk-Aware Quantitative Trading"
+authors = ["Antigravity <antigravity@google.com>"]
+readme = "README.md"
+packages = [
+    { include = "core_utils", from = "packages/core_utils" },
+    { include = "data_ingestor", from = "packages/data_ingestor" },
+    { include = "feature_engineer", from = "packages/feature_engineer" },
+    { include = "trading_environment", from = "packages/trading_environment" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fyers-api = "^2.1.3"
+yfinance = "^0.2.36"
+pandas = "^2.2.0"
+numpy = "^1.26.3"
+xgboost = "^1.7.6"
+scikit-learn = "^1.4.0"
+stable-baselines3 = "^2.2.1"
+gymnasium = "^0.29.1"
+transformers = "^4.37.2"
+torch = "^2.2.0"
+schedule = "^1.2.1"
+python-dotenv = "^1.0.1"
+plotly = "^5.18.0"
+requests = "^2.31.0"
+streamlit = "^1.31.1"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.1.0"
+python-json-logger = "^2.0.7"
+opentelemetry-api = "^1.22.0"
+opentelemetry-sdk = "^1.22.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^4.1.0"
+ruff = "^0.2.1"
+mypy = "^1.8.0"
+black = "^24.1.1"
+bandit = "^1.7.7"
+pre-commit = "^3.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "S", "B", "A", "COM", "PT"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
