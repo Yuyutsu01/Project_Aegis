@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  aegis-api:
+    build:
+      context: ../../
+      file: deployment/docker/Dockerfile
+      target: api
+    container_name: aegis_terminal_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../../data:/app/data
+      - ../../artifacts:/app/artifacts
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENV_CONFIG_PATH=/app/configs/prod.yaml
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  aegis-dashboard:
+    build:
+      context: ../../
+      file: deployment/docker/Dockerfile
+      target: dashboard
+    container_name: aegis_cyber_quant_terminal
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../../data:/app/data
+      - ../../artifacts:/app/artifacts
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SKIP_PIPELINE=true
+    restart: unless-stopped
+    depends_on:
+      - aegis-api
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aegis_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../../monitoring/prometheus:/etc/prometheus
+    restart: unless-stopped
