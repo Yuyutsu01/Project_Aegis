@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from src.data_ingestor import DataIngestor
+from data_ingestor.ingestor import DataIngestor
 
 
 # CONFIG
@@ -46,4 +46,4 @@ for symbol, df in data.items():
 
     print(f"Saved {symbol}_historical.parquet | Rows: {len(df)}")
 
-print("\n✅ DATA INGESTION COMPLETED SUCCESSFULLY")
+print("\nDATA INGESTION COMPLETED SUCCESSFULLY")

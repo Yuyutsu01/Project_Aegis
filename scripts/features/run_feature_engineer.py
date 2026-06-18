@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from src.feature_engineer import FeatureEngineer
+from feature_engineer.engineer import FeatureEngineer
 
 SYMBOLS = ["RELIANCE.NS", "TCS.NS"]
 DATA_DIR = "data"
@@ -84,4 +84,4 @@ for symbol in SYMBOLS:
     df_final.to_parquet(out_path)
     print(f"Saved {symbol}_processed.parquet | Shape: {df_final.shape}")
 
-print("\n🎉 FEATURE ENGINEERING COMPLETED SUCCESSFULLY")
+print("\nFEATURE ENGINEERING COMPLETED SUCCESSFULLY")

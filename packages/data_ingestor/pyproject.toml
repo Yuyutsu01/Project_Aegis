@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "data_ingestor"
+version = "1.0.0"
+description = "Market data loader for Project AEGIS using yfinance and broker APIs"
+authors = ["Antigravity <antigravity@google.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.0"
+yfinance = "^0.2.36"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

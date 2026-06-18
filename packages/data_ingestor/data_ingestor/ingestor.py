@@ -23,7 +23,7 @@ class DataIngestor:
                 )
 
                 if df.empty:
-                    print(f"⚠️ No data for {symbol}")
+                    print(f"WARNING: No data for {symbol}")
                     continue
 
                 # SAFE column mapping
@@ -47,7 +47,7 @@ class DataIngestor:
                 data[symbol] = df
 
             except Exception as e:
-                print(f"❌ Error fetching {symbol}: {e}")
+                print(f"ERROR: Error fetching {symbol}: {e}")
 
         return data
 
