@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "core_utils"
+version = "1.0.0"
+description = "Core utilities for Project AEGIS including logging, configurations, and errors"
+authors = ["Antigravity <antigravity@google.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.1.0"
+python-json-logger = "^2.0.7"
+opentelemetry-api = "^1.22.0"
+opentelemetry-sdk = "^1.22.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
