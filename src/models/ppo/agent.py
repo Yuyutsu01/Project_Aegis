@@ -1,5 +1,6 @@
 from stable_baselines3 import PPO
 
+
 def build_ppo(env):
     return PPO(
         policy="MlpPolicy",
@@ -13,5 +14,5 @@ def build_ppo(env):
         ent_coef=0.01,
         verbose=0,
         seed=42,
-        device="cpu"  # Force CPU execution (significantly faster for small MLP policies)
+        device="cpu",  # Force CPU execution (significantly faster for small MLP policies)
     )

@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 from feature_engineer.engineer import FeatureEngineer
 
@@ -31,13 +32,15 @@ for symbol in SYMBOLS:
     # --------------------------------------------------
     # CANONICALIZE COLUMN NAMES
     # --------------------------------------------------
-    df = df.rename(columns={
-        "Open": "open",
-        "High": "high",
-        "Low": "low",
-        "Close": "close",
-        "Volume": "volume"
-    })
+    df = df.rename(
+        columns={
+            "Open": "open",
+            "High": "high",
+            "Low": "low",
+            "Close": "close",
+            "Volume": "volume",
+        }
+    )
 
     # --------------------------------------------------
     # REMOVE DUPLICATE COLUMNS

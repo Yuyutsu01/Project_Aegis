@@ -2,7 +2,7 @@
 name = "project-aegis"
 version = "1.0.0"
 description = "Meta-Policy Reinforcement Learning Framework for Risk-Aware Quantitative Trading"
-authors = ["Antigravity <antigravity@google.com>"]
+authors = ["Shivam <shivamofficial2377@google.com>"]
 readme = "README.md"
 packages = [
     { include = "core_utils", from = "packages/core_utils" },
@@ -52,7 +52,10 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "S", "B", "A", "COM", "PT"]
-ignore = ["D100", "D104"]
+ignore = ["D100", "D104", "N803", "N818", "E501", "COM812"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true

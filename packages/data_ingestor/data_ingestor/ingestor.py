@@ -1,15 +1,17 @@
-import yfinance as yf
-import pandas as pd
-from typing import Dict
 import warnings
+
+import pandas as pd
+import yfinance as yf
+
 warnings.filterwarnings("ignore")
+
 
 class DataIngestor:
     def __init__(self, symbols, start_date="2020-01-01"):
         self.symbols = symbols
         self.start_date = start_date
 
-    def fetch_historical(self) -> Dict[str, pd.DataFrame]:
+    def fetch_historical(self) -> dict[str, pd.DataFrame]:
         data = {}
 
         for symbol in self.symbols:
@@ -19,7 +21,7 @@ class DataIngestor:
                     symbol,
                     start=self.start_date,
                     progress=False,
-                    auto_adjust=False
+                    auto_adjust=False,
                 )
 
                 if df.empty:
@@ -27,13 +29,15 @@ class DataIngestor:
                     continue
 
                 # SAFE column mapping
-                df = df.rename(columns={
-                    "Open": "open",
-                    "High": "high",
-                    "Low": "low",
-                    "Close": "close",
-                    "Volume": "volume"
-                })
+                df = df.rename(
+                    columns={
+                        "Open": "open",
+                        "High": "high",
+                        "Low": "low",
+                        "Close": "close",
+                        "Volume": "volume",
+                    }
+                )
 
                 # HARD RULE: drop adjusted close to avoid corporate-action leakage
                 df = df[["open", "high", "low", "close", "volume"]]

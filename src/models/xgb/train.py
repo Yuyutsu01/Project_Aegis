@@ -1,9 +1,11 @@
-import pandas as pd
 import os
+
 import numpy as np
-from src.models.xgb.model import XGBDirectionalModel
-from sklearn.metrics import accuracy_score, roc_auc_score
+import pandas as pd
+from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import TimeSeriesSplit
+
+from src.models.xgb.model import XGBDirectionalModel
 
 DATA_PATH = "data/RELIANCE.NS_processed.parquet"
 ARTIFACT_DIR = "artifacts/xgb"
@@ -46,10 +48,10 @@ aucs = []
 for train_idx, val_idx in tscv.split(X_train):
     X_tr, y_tr = X_train.iloc[train_idx], y_train.iloc[train_idx]
     X_v, y_v = X_train.iloc[val_idx], y_train.iloc[val_idx]
-    
+
     cv_model = XGBDirectionalModel()
     cv_model.train(X_tr, y_tr, X_v, y_v)
-    
+
     proba = cv_model.predict_proba(X_v)
     aucs.append(roc_auc_score(y_v, proba))
 
@@ -63,7 +65,9 @@ print(f"Mean CV ROC-AUC: {np.mean(aucs):.4f}")
 model = XGBDirectionalModel()
 # using a small dummy validation set just for early stopping
 split_val = int(len(X_train) * 0.9)
-model.train(X_train.iloc[:split_val], y_train.iloc[:split_val], X_train.iloc[split_val:], y_train.iloc[split_val:])
+X_tr_final, y_tr_final = X_train.iloc[:split_val], y_train.iloc[:split_val]
+X_val_final, y_val_final = X_train.iloc[split_val:], y_train.iloc[split_val:]
+model.train(X_tr_final, y_tr_final, X_val_final, y_val_final)
 
 # -----------------------------------
 # SAVE MODEL

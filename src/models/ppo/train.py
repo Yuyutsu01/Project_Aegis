@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
+import xgboost as xgb
 from stable_baselines3.common.vec_env import DummyVecEnv
 from trading_environment.env import TradingEnv
+
 from src.models.ppo.agent import build_ppo
-import xgboost as xgb
 
 DATA_PATH = "data/RELIANCE.NS_processed.parquet"
 XGB_PATH = "artifacts/xgb/xgb_directional.json"
@@ -70,4 +71,3 @@ while not done:
 print(f"PPO Test Cumulative Reward (OOS): {cum_reward:.6f}")
 
 model.save("artifacts/ppo/ppo_meta_policy")
-

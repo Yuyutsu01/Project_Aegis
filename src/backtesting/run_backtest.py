@@ -1,9 +1,9 @@
+import os
+
 import numpy as np
 import pandas as pd
 import xgboost as xgb
 from stable_baselines3 import PPO
-import os
-
 from trading_environment.env import TradingEnv
 
 # ==================================================
@@ -24,10 +24,17 @@ print("=== RUNNING META-POLICY BACKTEST ===")
 df = pd.read_parquet(DATA_PATH).reset_index(drop=True)
 
 feature_cols = [
-    "ret_1d_z", "ret_5d_z", "sma_20_z", "sma_50_z",
-    "rsi_z", "macd_z", "macd_signal_z",
-    "bb_width_z", "vol_sma_z", "vol_ratio_z",
-    "trend_sma"
+    "ret_1d_z",
+    "ret_5d_z",
+    "sma_20_z",
+    "sma_50_z",
+    "rsi_z",
+    "macd_z",
+    "macd_signal_z",
+    "bb_width_z",
+    "vol_sma_z",
+    "vol_ratio_z",
+    "trend_sma",
 ]
 
 # Clean data
@@ -61,21 +68,21 @@ split_2 = int(len(df) * 0.8)
 for t in range(len(df) - 1):
     # --- Observation at t ---
     obs = env.get_observation(t, prev_position, df.loc[t, "xgb_prob"])
-    
+
     # --- PPO Decision ---
     ppo_act, _ = model.predict(obs, deterministic=True)
     final_pos = {0: -1, 1: 0, 2: 1}[int(ppo_act)]
-        
+
     # --- Execution & Costs ---
     cost = COMMISSION if final_pos != prev_position else 0
-    
+
     # --- Earn return of t+1 ---
     next_ret = df.loc[t + 1, "ret_1d"]
     step_pnl = (final_pos * next_ret) - cost
-    
+
     # Update Equity (Compounded)
-    current_equity *= (1 + step_pnl)
-    
+    current_equity *= 1 + step_pnl
+
     # Track results
     if t < split_1:
         period = "IS_XGB_TRAIN"
@@ -83,16 +90,18 @@ for t in range(len(df) - 1):
         period = "IS_PPO_TRAIN"
     else:
         period = "OOS_TEST"
-    
-    results.append({
-        "date": df.loc[t, "date"] if "date" in df.columns else t,
-        "equity": current_equity,
-        "position": final_pos,
-        "xgb_prob": df.loc[t, "xgb_prob"],
-        "pnl": step_pnl,
-        "period": period
-    })
-    
+
+    results.append(
+        {
+            "date": df.loc[t, "date"] if "date" in df.columns else t,
+            "equity": current_equity,
+            "position": final_pos,
+            "xgb_prob": df.loc[t, "xgb_prob"],
+            "pnl": step_pnl,
+            "period": period,
+        }
+    )
+
     prev_position = final_pos
 
 # ==================================================
@@ -115,9 +124,13 @@ for period in ["IS_XGB_TRAIN", "IS_PPO_TRAIN", "OOS_TEST"]:
     subset = res_df[res_df["period"] == period]
     if not subset.empty:
         cum_ret = (subset["equity"].iloc[-1] / subset["equity"].iloc[0]) - 1
-        sharpe = np.sqrt(252) * subset["pnl"].mean() / subset["pnl"].std() if subset["pnl"].std() != 0 else 0
+        pnl_std = subset["pnl"].std()
+        sharpe = np.sqrt(252) * subset["pnl"].mean() / pnl_std if pnl_std != 0 else 0
         mdd = subset["drawdown"].min()
         exposure = (subset["position"] != 0).mean()
-        print(f"[{period}] Cum Ret: {cum_ret:.2%}, Sharpe: {sharpe:.2f}, MaxDD: {mdd:.2%}, Exposure: {exposure:.2%}")
+        print(
+            f"[{period}] Cum Ret: {cum_ret:.2%}, Sharpe: {sharpe:.2f}, "
+            f"MaxDD: {mdd:.2%}, Exposure: {exposure:.2%}",
+        )
 
 print(f"Final Equity (Overall): {current_equity:.4f}")

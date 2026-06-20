@@ -1,6 +1,5 @@
 import xgboost as xgb
-import pandas as pd
-import numpy as np
+
 
 class XGBDirectionalModel:
     def __init__(self):
@@ -16,7 +15,7 @@ class XGBDirectionalModel:
             objective="binary:logistic",
             eval_metric="logloss",
             random_state=42,
-            early_stopping_rounds=50
+            early_stopping_rounds=50,
         )
 
     def train(self, X_train, y_train, X_val, y_val):
@@ -24,7 +23,7 @@ class XGBDirectionalModel:
             X_train,
             y_train,
             eval_set=[(X_val, y_val)],
-            verbose=False
+            verbose=False,
         )
 
     def predict_proba(self, X):

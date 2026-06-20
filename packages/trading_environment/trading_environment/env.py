@@ -20,10 +20,17 @@ class TradingEnv(gym.Env):
         # FEATURE COLUMNS (MUST MATCH TRAINING)
         # ===============================
         self.feature_cols = [
-            "ret_1d_z", "ret_5d_z", "sma_20_z", "sma_50_z",
-            "rsi_z", "macd_z", "macd_signal_z",
-            "bb_width_z", "vol_sma_z", "vol_ratio_z",
-            "trend_sma"
+            "ret_1d_z",
+            "ret_5d_z",
+            "sma_20_z",
+            "sma_50_z",
+            "rsi_z",
+            "macd_z",
+            "macd_signal_z",
+            "bb_width_z",
+            "vol_sma_z",
+            "vol_ratio_z",
+            "trend_sma",
         ]
 
         if "xgb_prob" not in self.data.columns:
@@ -37,9 +44,10 @@ class TradingEnv(gym.Env):
         # ===============================
         self.action_space = spaces.Discrete(3)  # 0: short, 1: flat, 2: long
         self.observation_space = spaces.Box(
-            low=-10.0, high=10.0,
+            low=-10.0,
+            high=10.0,
             shape=(self.n_features,),
-            dtype=np.float32
+            dtype=np.float32,
         )
 
         self.current_step = 0
@@ -62,22 +70,21 @@ class TradingEnv(gym.Env):
     # INFERENCE OBSERVATION (USED BY HARD CONSENSUS)
     # ==================================================
     def get_observation(self, idx: int, current_position: int, xgb_prob: float):
-      """
-       Deterministic, numerically safe observation for inference."""
-   
-      obs = self.data.loc[idx, self.feature_cols].values.tolist()
-      obs.append(xgb_prob)
-      obs.append(current_position)
-      obs_arr = np.array(obs, dtype=np.float32)
+        """
+        Deterministic, numerically safe observation for inference."""
 
-    # Replace NaN / Inf
-      obs_arr = np.nan_to_num(obs_arr, nan=0.0, posinf=10.0, neginf=-10.0)
+        obs = self.data.loc[idx, self.feature_cols].values.tolist()
+        obs.append(xgb_prob)
+        obs.append(current_position)
+        obs_arr = np.array(obs, dtype=np.float32)
 
-    # Clip to training bounds
-      obs_arr = np.clip(obs_arr, -10.0, 10.0)
+        # Replace NaN / Inf
+        obs_arr = np.nan_to_num(obs_arr, nan=0.0, posinf=10.0, neginf=-10.0)
 
-      return obs_arr
+        # Clip to training bounds
+        obs_arr = np.clip(obs_arr, -10.0, 10.0)
 
+        return obs_arr
 
     def reset(self, seed=None, options=None):
         self.current_step = 0
@@ -102,16 +109,16 @@ class TradingEnv(gym.Env):
         # Observation at t -> Action at t -> earns return at t+1
         # --------------------------------------------------
         next_ret = self.data.loc[self.current_step + 1, "ret_1d"]
-        
+
         # Meta-Policy Reward: Penalize excessive switching and optimize for Sharpe-like behavior
         step_pnl = (self.position * next_ret) - costs
-        
-        # We give a slight penalty for being in cash to encourage finding good trades, 
+
+        # We give a slight penalty for being in cash to encourage finding good trades,
         # or we could just use step_pnl. Let's use pure step_pnl.
         reward = step_pnl
 
         self.current_step += 1
-        done = self.current_step >= len(self.data) - 2 # buffer for t+1 return
+        done = self.current_step >= len(self.data) - 2  # buffer for t+1 return
 
         obs = self._get_obs() if not done else np.zeros(self.n_features, dtype=np.float32)
 
