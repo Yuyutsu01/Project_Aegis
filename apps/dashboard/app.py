@@ -705,77 +705,93 @@ if raw_df is not None:
                 unsafe_allow_html=True,
             )
             if selected_node == "1. Market Data":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Market Data Ingestion  
                     **INPUTS**: Yahoo Finance Stock APIs, Local CSV / Parquet Tickers  
                     **OUTPUTS**: Raw prices array (`open`, `high`, `low`, `close`, `volume`)  
                     **DIMENSIONS**: `(1480, 5)` matrix  
                     **PARAMETERS**: `Interval = 1D`, `Symbol = RELIANCE.NS`  
                     **DIAGNOSTIC STATUS**: Operational
-                """)
+                """
+                )
             elif selected_node == "2. Feature Engineering":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Standardization & Statistics Engine  
                     **INPUTS**: Raw OHLCV vectors  
                     **OUTPUTS**: Rolling z-scores of returns, SMA distances, Bollinger bands, RSI, MACD  
                     **DIMENSIONS**: `(1480, 11)` feature matrix  
                     **PARAMETERS**: `lookback_window = 20`, `long_window = 50`  
                     **DIAGNOSTIC STATUS**: Normalized (0.0 Mean, 1.0 Variance)
-                """)
+                """
+                )
             elif selected_node == "3. XGBoost (Eyes)":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Directional Trend Classifier  
                     **INPUTS**: 11 rolling z-score features  
                     **OUTPUTS**: Probability float predicting directional closure $P(\text{Up}) \in [0, 1]$  
                     **DIMENSIONS**: `(1, 11)` per candle step  
                     **PARAMETERS**: `max_depth = 3`, `reg_lambda = 1.5`, `learning_rate = 0.01`  
                     **DIAGNOSTIC STATUS**: Trained (ROC-AUC: 0.5335)
-                """)
+                """
+                )
             elif selected_node == "4. Probability P(Up)":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: XGBoost Output Calibration  
                     **INPUTS**: Raw booster output score  
                     **OUTPUTS**: Calibrated directional bias probability  
                     **DIMENSIONS**: Scalar `float`  
                     **PARAMETERS**: Sigmoid calibration activation  
                     **DIAGNOSTIC STATUS**: Aligned
-                """)
+                """
+                )
             elif selected_node == "5. PPO Agent (Brain)":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Strategic Actor-Critic Policy Engine  
                     **INPUTS**: Combined observation vector (11 Features + $P(\text{Up})$ + Position state)  
                     **OUTPUTS**: Action probability distribution and advantage values  
                     **DIMENSIONS**: State input shape `(13,)`  
                     **PARAMETERS**: `learning_rate = 3e-4`, `gamma = 0.99`, `gae_lambda = 0.95`  
                     **DIAGNOSTIC STATUS**: Policy hardened
-                """)
+                """
+                )
             elif selected_node == "6. Action Selection":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Execution Gate  
                     **INPUTS**: PPO categorical action distributions  
                     **OUTPUTS**: Discrete action choice: `-1` (Short), `0` (Flat), `1` (Long)  
                     **DIMENSIONS**: Discrete space `(3,)`  
                     **PARAMETERS**: Deterministic argmax policy  
                     **DIAGNOSTIC STATUS**: Execution ready
-                """)
+                """
+                )
             elif selected_node == "7. Reward Engine":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Friction-adjusted PnL reward evaluator  
                     **INPUTS**: Action decision, forward return $R_{t+1}$, previous position  
                     **OUTPUTS**: Step reward scalar  
                     **DIMENSIONS**: Scalar `float`  
                     **PARAMETERS**: `Commission Friction = 0.1%`  
                     **DIAGNOSTIC STATUS**: Reward feedback looped
-                """)
+                """
+                )
             elif selected_node == "8. Portfolio Update":
-                st.markdown("""
+                st.markdown(
+                    """
                     **NODE ROLE**: Portfolio Balance ledger  
                     **INPUTS**: Executed returns, transaction costs  
                     **OUTPUTS**: Compounded portfolio capital curve  
                     **DIMENSIONS**: Scalar `float`  
                     **PARAMETERS**: `Slippage Cost = 0.05%`  
                     **DIAGNOSTIC STATUS**: Active Ledger updated
-                """)
+                """
+                )
             st.markdown("</div>", unsafe_allow_html=True)
 
         with col_diag:
