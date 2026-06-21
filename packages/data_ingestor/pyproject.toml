@@ -2,8 +2,7 @@
 name = "data_ingestor"
 version = "1.0.0"
 description = "Market data loader for Project AEGIS using yfinance and broker APIs"
-authors = ["Antigravity <antigravity@google.com>"]
-readme = "README.md"
+authors = ["Shivam <[EMAIL_ADDRESS]>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

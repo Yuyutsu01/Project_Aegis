@@ -2,8 +2,7 @@
 name = "feature_engineer"
 version = "1.0.0"
 description = "Rolling z-score feature engineering indicators for Project AEGIS"
-authors = ["Antigravity <antigravity@google.com>"]
-readme = "README.md"
+authors = ["Shivam <[EMAIL_ADDRESS]>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

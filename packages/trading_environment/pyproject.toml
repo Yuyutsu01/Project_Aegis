@@ -2,8 +2,7 @@
 name = "trading_environment"
 version = "1.0.0"
 description = "Custom Gymnasium environment simulating quant trading executions under frictions"
-authors = ["Antigravity <antigravity@google.com>"]
-readme = "README.md"
+authors = ["Shivam <[Shivamofficial2377@gmail.com]>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

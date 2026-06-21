@@ -2,8 +2,7 @@
 name = "core_utils"
 version = "1.0.0"
 description = "Core utilities for Project AEGIS including logging, configurations, and errors"
-authors = ["Antigravity <antigravity@google.com>"]
-readme = "README.md"
+authors = ["Shivam <[EMAIL_ADDRESS]>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
