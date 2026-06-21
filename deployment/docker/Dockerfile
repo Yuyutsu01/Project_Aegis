@@ -21,6 +21,12 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
+RUN pip install --no-cache-dir \
+    -e packages/core_utils \
+    -e packages/data_ingestor \
+    -e packages/feature_engineer \
+    -e packages/trading_environment
+
 
 # Build Stage: Run linters & tests during container construction
 FROM base AS test-runner
