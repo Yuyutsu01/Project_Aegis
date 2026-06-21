@@ -19,9 +19,11 @@ def get_logger(name: str = "ProjectAegis", log_level: str = "INFO") -> logging.L
 
     stream_handler = logging.StreamHandler(sys.stdout)
 
+    # Explicitly declare formatter type to prevent mypy narrowing to JsonFormatter in the if-block
+    formatter: logging.Formatter
     if is_k8s_or_docker:
         # Enforce JSON logs in containers
-        formatter: logging.Formatter = jsonlogger.JsonFormatter(
+        formatter = jsonlogger.JsonFormatter(
             "%(asctime)s %(name)s %(levelname)s %(message)s",
         )
     else:

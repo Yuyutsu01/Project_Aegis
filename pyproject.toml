@@ -60,3 +60,7 @@ ignore = ["D100", "D104", "N803", "N818", "E501", "COM812"]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
+
+[tool.mypy]
+ignore_missing_imports = true
+disable_error_code = ["import-untyped"]
