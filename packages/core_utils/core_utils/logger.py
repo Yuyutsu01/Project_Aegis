@@ -21,7 +21,7 @@ def get_logger(name: str = "ProjectAegis", log_level: str = "INFO") -> logging.L
 
     if is_k8s_or_docker:
         # Enforce JSON logs in containers
-        formatter = jsonlogger.JsonFormatter(
+        formatter: logging.Formatter = jsonlogger.JsonFormatter(
             "%(asctime)s %(name)s %(levelname)s %(message)s",
         )
     else:
