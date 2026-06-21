@@ -17,7 +17,7 @@ def calculate_percentage_change(old_val: float, new_val: float) -> float:
     return (new_val - old_val) / old_val * 100
 
 
-def format_timestamp(timestamp: datetime = None) -> str:
+def format_timestamp(timestamp: datetime | None = None) -> str:
     """Format timestamp for display"""
     if timestamp is None:
         timestamp = datetime.now()

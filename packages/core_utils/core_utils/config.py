@@ -58,7 +58,7 @@ class AegisSettings(BaseSettings):
     )
 
 
-def load_config(config_path: str = None) -> AegisSettings:
+def load_config(config_path: str | None = None) -> AegisSettings:
     """Load configuration from YAML and environment overrides"""
     if config_path is None:
         config_path = os.environ.get("ENV_CONFIG_PATH", "configs/base.yaml")
