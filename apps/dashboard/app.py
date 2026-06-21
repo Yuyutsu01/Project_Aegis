@@ -1,14 +1,14 @@
 import os
 import sys
 
-import gym
+import gymnasium as gym
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import xgboost as xgb
-from gym import spaces
+from gymnasium import spaces
 from scipy.stats import gaussian_kde
 from stable_baselines3 import PPO
 
