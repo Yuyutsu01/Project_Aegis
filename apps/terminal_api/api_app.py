@@ -1,16 +1,19 @@
 import json
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from core_utils.logger import get_logger
 
 # Initialize structured logging from core_utils
 logger = get_logger("TerminalAPI")
+
 
 class APIHandler(BaseHTTPRequestHandler):
     """
     Minimal, zero-dependency HTTP server to act as the AEGIS Terminal API gateway.
     Handles basic health checks and provides metrics for the Prometheus scraper.
     """
-    def do_GET(self):
+
+    def do_GET(self):  # noqa: N802
         if self.path in ("/", "/health"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -34,9 +37,10 @@ class APIHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({"error": "Not Found"}).encode("utf-8"))
 
-    def log_message(self, format, *args):
+    def log_message(self, format_str, *args):
         # Route standard HTTP request logging through core logging utility
-        logger.info(format % args)
+        logger.info(format_str % args)
+
 
 def run():
     server_address = ("", 8000)
@@ -47,6 +51,7 @@ def run():
     except KeyboardInterrupt:
         pass
     logger.info("Stopping AEGIS Terminal API...")
+
 
 if __name__ == "__main__":
     run()

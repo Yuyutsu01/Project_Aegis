@@ -36,9 +36,10 @@ RUN ruff check . && pytest --cov=src tests/unit/
 # API Stage: Light production image for the FastAPI gateway
 FROM base AS api
 EXPOSE 8000
-CMD ["python", "apps/terminal_api/app.py"]
+CMD ["python", "apps/terminal_api/api_app.py"]
 
 # Dashboard Stage: Image hosting the Cyber-Quant Terminal dashboard
 FROM base AS dashboard
 EXPOSE 8501
-CMD ["streamlit", "run", "apps/dashboard/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+CMD ["streamlit", "run", "apps/dashboard/dashboard_app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+

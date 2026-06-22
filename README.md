@@ -30,9 +30,9 @@ Project AEGIS is organized as an enterprise-grade monorepo:
 project-aegis/
 ├── apps/                               # Deployable user applications
 │   ├── dashboard/                      # Streamlit-based Cyber-Quant Terminal
-│   │   └── app.py
+│   │   └── dashboard_app.py
 │   └── terminal_api/                   # FastAPI gateway serving metrics and reports
-│       └── app.py
+│       └── api_app.py
 ├── packages/                           # Internal reusable packages
 │   ├── core_utils/                     # Shared logger, error classes, and configs
 │   ├── data_ingestor/                  # Ingestors for Yahoo Finance & Fyers broker
